@@ -1,9 +1,13 @@
 import type Database from 'better-sqlite3';
 import { initializeSchema } from './schema.js';
+import { initializeSecondBrainSchema } from './secondBrainSchema.js';
 
 const migrations: Record<number, (db: Database.Database) => void> = {
   1: (db) => {
     initializeSchema(db);
+  },
+  2: (db) => {
+    initializeSecondBrainSchema(db);
   },
 };
 

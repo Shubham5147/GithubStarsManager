@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Settings, Calendar, Search, Moon, Sun, LogOut, RefreshCw, TrendingUp, GitFork } from 'lucide-react';
+import { Settings, Calendar, Search, Moon, Sun, LogOut, RefreshCw, TrendingUp, GitFork, Film, BookOpen } from 'lucide-react';
 import { useAppStore } from '../store/useAppStore';
 import { GitHubApiService } from '../services/githubApi';
 import { useDialog } from '../hooks/useDialog';
@@ -223,6 +223,28 @@ export const Header: React.FC = () => {
             >
               <GitFork className={`${isTextWrapped ? 'w-5 h-5' : 'w-4 h-4'} ${isTextWrapped ? '' : 'inline mr-2'}`} />
               {!isTextWrapped && t('复刻', 'Forks')}
+            </button>
+            <button
+              onClick={() => setCurrentView('inbox')}
+              className={`${isTextWrapped ? 'p-2.5' : 'px-4 py-2'} rounded-lg font-medium transition-colors ${
+                currentView === 'inbox'
+                  ? 'bg-white dark:bg-white/[0.1] text-gray-900 dark:text-text-primary shadow-sm border border-black/[0.06] dark:border-white/[0.04]'
+                  : 'text-gray-700 dark:text-text-secondary hover:bg-light-surface dark:hover:bg-white/5'
+              }`}
+            >
+              <Film className={`${isTextWrapped ? 'w-5 h-5' : 'w-4 h-4'} ${isTextWrapped ? '' : 'inline mr-2'}`} />
+              {!isTextWrapped && t('收件箱', 'Inbox')}
+            </button>
+            <button
+              onClick={() => setCurrentView('papers')}
+              className={`${isTextWrapped ? 'p-2.5' : 'px-4 py-2'} rounded-lg font-medium transition-colors ${
+                currentView === 'papers'
+                  ? 'bg-white dark:bg-white/[0.1] text-gray-900 dark:text-text-primary shadow-sm border border-black/[0.06] dark:border-white/[0.04]'
+                  : 'text-gray-700 dark:text-text-secondary hover:bg-light-surface dark:hover:bg-white/5'
+              }`}
+            >
+              <BookOpen className={`${isTextWrapped ? 'w-5 h-5' : 'w-4 h-4'} ${isTextWrapped ? '' : 'inline mr-2'}`} />
+              {!isTextWrapped && t('论文', 'Papers')}
             </button>
             <button
               onClick={() => setCurrentView('subscription')}

@@ -14,6 +14,7 @@ import categoriesRouter from './routes/categories.js';
 import configsRouter from './routes/configs.js';
 import syncRouter from './routes/sync.js';
 import proxyRouter from './routes/proxy.js';
+import secondBrainRouter from './routes/secondBrain.js';
 
 export function createApp(): express.Express {
   const app = express();
@@ -39,6 +40,9 @@ export function createApp(): express.Express {
 
   // Wave 3: Proxy routes
   app.use(proxyRouter);
+
+  // Second Brain extension
+  app.use(secondBrainRouter);
 
   // Global error handler
   app.use(errorHandler);

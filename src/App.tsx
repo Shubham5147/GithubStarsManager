@@ -8,6 +8,9 @@ import { ReleaseTimeline } from './components/ReleaseTimeline';
 import { ForkTimeline } from './components/ForkTimeline';
 import { SettingsPanel } from './components/SettingsPanel';
 import { DiscoveryView } from './components/DiscoveryView';
+import { InboxView } from './components/InboxView';
+import { PapersView } from './components/PapersView';
+import { BrainSearchBar } from './components/BrainSearchBar';
 import { BackToTop } from './components/BackToTop';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { useAppStore } from './store/useAppStore';
@@ -85,6 +88,12 @@ ForksView.displayName = 'ForksView';
 
 const SettingsView = React.memo(() => <SettingsPanel />);
 SettingsView.displayName = 'SettingsView';
+
+const InboxViewMemo = React.memo(() => <InboxView />);
+InboxViewMemo.displayName = 'InboxView';
+
+const PapersViewMemo = React.memo(() => <PapersView />);
+PapersViewMemo.displayName = 'PapersView';
 
 function App() {
   const {
@@ -165,6 +174,10 @@ function App() {
         );
       case 'settings':
         return <SettingsView />;
+      case 'inbox':
+        return <InboxViewMemo />;
+      case 'papers':
+        return <PapersViewMemo />;
       default:
         return null;
     }
@@ -190,6 +203,7 @@ function App() {
       <UpdateNotificationBanner />
       <Header />
       <main className="max-w-[1200px] mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8">
+        <BrainSearchBar />
         {currentViewContent}
       </main>
       <BackToTop />

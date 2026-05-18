@@ -11,7 +11,10 @@ interface Config {
 }
 
 function resolveDataDir(): string {
-  const dataDir = path.resolve(process.cwd(), 'data');
+  const root = process.env.SECOND_BRAIN_ROOT
+    ? path.resolve(process.env.SECOND_BRAIN_ROOT)
+    : path.resolve(process.cwd(), '../..');
+  const dataDir = path.join(root, 'data');
   if (!fs.existsSync(dataDir)) {
     fs.mkdirSync(dataDir, { recursive: true });
   }
@@ -42,7 +45,9 @@ function loadConfig(): Config {
     port: parseInt(process.env.PORT || '3000', 10),
     apiSecret: process.env.API_SECRET || null,
     encryptionKey: resolveEncryptionKey(dataDir),
-    dbPath: process.env.DB_PATH || path.join(dataDir, 'data.db'),
+    dbPath: process.env.DB_PATH
+      ? path.resolve(process.env.DB_PATH)
+      : path.join(dataDir, 'second_brain.db'),
     nodeEnv: process.env.NODE_ENV || 'development',
   };
 }

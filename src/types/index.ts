@@ -232,7 +232,7 @@ export interface AppState {
   
   // UI
   theme: 'light' | 'dark';
-  currentView: 'repositories' | 'releases' | 'forks' | 'settings' | 'subscription';
+  currentView: 'repositories' | 'releases' | 'forks' | 'settings' | 'subscription' | 'inbox' | 'papers';
   selectedCategory: string;
   language: 'zh' | 'en';
   isSidebarCollapsed: boolean;

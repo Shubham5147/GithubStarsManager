@@ -10,6 +10,7 @@ import { GitHubApiService } from '../services/githubApi';
 import { formatDistanceToNow } from 'date-fns';
 import { RepositoryEditModal } from './RepositoryEditModal';
 import { ReadmeModal } from './ReadmeModal';
+import { ReadmeCarousel } from './ReadmeCarousel';
 import { shallow } from 'zustand/shallow';
 import { useDialog } from '../hooks/useDialog';
 
@@ -925,6 +926,8 @@ const RepositoryCardComponent: React.FC<RepositoryCardProps> = ({
           ) : null}
         </div>
       </div>
+
+      <ReadmeCarousel fullName={repository.full_name} />
 
       {/* Tags - 未AI分析时显示Topics，AI分析后显示AI标签 */}
       {displayTags.tags.length > 0 && (
